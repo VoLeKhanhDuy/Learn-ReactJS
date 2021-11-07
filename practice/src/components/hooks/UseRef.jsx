@@ -3,6 +3,11 @@ import React, { useEffect, useRef } from "react";
 // Lưu giá trị của một tham chiếu bên ngoài function component
 // Nghĩa là nó tự đem cái biến đó ra ngoài hàm =))
 // Luôn trả về 1 object có properties là `current`
+// Lưu trữ các tham chiếu
+// useRef: mỗi khi component bị re-render thì useRef đều tham chiếu tới 1 object duy nhất
+//         mà không bị khởi tạo lại
+
+// giữ lại được giá trị của biến đó khi component re-render
 
 function UseRef() {
   const [count, setCount] = useRef(60);

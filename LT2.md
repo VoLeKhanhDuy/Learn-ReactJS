@@ -268,6 +268,15 @@ Lưu ý:
 
 > Component sẽ được render lại sau khi `setState`
 >
+> setState với Callback
+>
+> > ```js
+> > // setState sẽ nhận vào 1 callback.
+> > // callback này sẽ trả lại đối số là giá trị hiện tại của state
+> > // prevState: là giá trị state trước đó
+> > setState((prevState) => prevState + 1); // VD: 1 => 1 + 1 => state = 2
+> > ```
+>
 > Initial State chỉ dùng cho lần đầu
 >
 > Nếu `initState` là một hàm thì sẽ lấy giá trị **return** của hàm đó làm `initState`
@@ -410,10 +419,7 @@ Giúp tránh tạo ra những hàm mới không cần thiết
 
 <em>Tóm lại:</em>
 
-> Trong thực tế thì một component có thể nhận rất nhiều `props`, trong đó có nhiều `props` là kiểu dữ liệu
-> `nguyên thủy` và cũng có nhiều `props` có kiểu dữ liệu `tham chiếu`. Nếu đã xác định sử dụng `React.memo`
-> để tránh component con bị render không cần thiết thì những cái `function` truyền vào phải sử dụng
-> `useCallback` hết để tránh bị render không cần thiết
+Trong thực tế thì một component có thể nhận rất nhiều `props`, trong đó có nhiều `props` là kiểu dữ liệu `nguyên thủy` và cũng có nhiều `props` có kiểu dữ liệu `tham chiếu` (object, array, function). Nếu đã xác định sử dụng `React.memo` để tránh component con bị render không cần thiết thì những cái `function` truyền vào phải sử dụng `useCallback` hết để tránh bị render không cần thiết
 
 Ví dụ:
 
@@ -447,6 +453,7 @@ Ví dụ:
 > > import React, { memo } from "react";
 > >
 > > function Content({ onIncrease }) {
+> >   console.log("re-render");
 > >   return (
 > >     <div>
 > >       <button onClick={onIncrease}>Click!</button>
@@ -456,3 +463,13 @@ Ví dụ:
 > >
 > > export default memo(Content);
 > > ```
+
+**6. useMemo()**
+
+Dùng để tránh thực hiện lại 1 logic nào đó không cần thiết
+
+-> Xem file UseMemo
+
+**6. useReducer()**
+
+Chức nắng giống như `useState()` nhưng thường dùng để xử lý các state phức tạp hơn
