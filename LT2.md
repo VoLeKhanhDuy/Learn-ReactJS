@@ -468,8 +468,82 @@ Ví dụ:
 
 Dùng để tránh thực hiện lại 1 logic nào đó không cần thiết
 
--> Xem file UseMemo
+-> Xem file UseMemo trong project practice
 
-**6. useReducer()**
+**7. useReducer()**
 
 Chức nắng giống như `useState()` nhưng thường dùng để xử lý các state phức tạp hơn
+
+-> Xem file UseReducer, folder UseeducerTodo, TodoAppUseReducer trong project practice
+
+**8. useContext()**
+
+Context: giúp đơn giản hóa việc truyền dữ liệu từ component cha sang các component con mà không cần dùng đến `props` (truyền dữ liệu không cần component trung gian)
+
+<em>1. Create contex:</em>
+<em>2. Provider:</em> cung cấp dữ liệu
+<em>3. Consumer:</em> nhận dữ liệu
+
+## CSS, CSS module, classNames
+
+**1. Sử dụng CSS**
+
+- <em>CSS inline:</em> `style={{ margin: '0 32px' }}`
+
+- Tạo 1 file để viết CSS riêng (nhớ import)
+
+VD:
+
+```shell
+  src
+  |__components
+     |__Heading
+        |__index.jsx (import './heading.css')
+        |__heading.css
+```
+
+- Khi build CSS lên môi trường product thì toàn bộ các file css sẽ được gộp lại thành 1 file (file này là file min)
+
+**2. CSS module**
+
+VD:
+
+```shell
+  src
+  |__components
+     |__Heading
+        |__index.jsx - (import styles from './heading.module.css')
+        |__heading.module.css
+```
+
+Trong file `index.jsx` ta sử dụng:
+
+```js
+<h1 className={styles.heading}>Đây là heading</h1>
+```
+
+<em>\* Lưu ý:</em>
+
+- Đặt tên class bằng kiểu camelCase
+
+**3. Thư viện clsx và classnames**
+
+- Cài đặt `clsx`: `npm i clsx`
+
+- `import clsx from 'clsx'`
+
+```js
+<h1 className={clsx(styles.btn, styles.active)}>Heading</h1>
+```
+
+- style theo logic
+
+```js
+<h1
+  className={clsx(styles.btn, {
+    [styles.active]: false,
+  })}
+>
+  Heading
+</h1>
+```
